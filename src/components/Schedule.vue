@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="is-primary">hey</button>
+    <button class="button is-primary">hey</button>
     <div class="quotes">
       <p>Quotes of the Day</p>
       <p>{{`"${quotes}"`}}</p>
