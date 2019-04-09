@@ -1,27 +1,57 @@
 <template>
-  <div>
-    <button class="button is-primary">hey</button>
-    <div class="quotes">
-      <p>Quotes of the Day</p>
-      <p>{{`"${quotes}"`}}</p>
-      <p>- {{author}}</p>
-    </div>
-    <div class="clock">
-      <p>{{hariTanggalTahun}}</p>
-      <p>{{ hour }}:{{ minute }}:{{ second }}</p>
-      <p>{{ jagaLab}}</p>
-    </div>
-    <div class="schedule">
-      <p>Aslab Jaga Saat Ini</p>
-      <h1>{{day}}</h1>
-      <div class="aslab-jaga">
-        <div v-if="workHours">
-          <div>{{aslabNow[0]}}</div>
-          <div>{{aslabNow[1]}}</div>
-          <div>{{aslabNow[2]}}</div>
-        </div>
-        <div v-else>
-          {{aslabNow}}
+  <div class="hero-body">
+    <div class="container">
+      <div class="clock">
+        <p class="is-size-1 has-text-grey-lighter">{{hariTanggalTahun}}</p>
+        <p
+          class="is-size-1 has-text-grey-lighter"
+          style="padding-bottom: 150px;"
+        >{{ hour }}:{{ minute }}:{{ second }}</p>
+        <p class="is-size-1 has-text-grey-lighter">{{ jagaLab}}</p>
+      </div>
+      <div class="quotes">
+        <p class="is-size-1 has-text-grey-lighter">Quotes of the Day</p>
+        <p class="is-size-1 has-text-grey-lighter">{{quotes}}</p>
+        <p
+          class="is-size-1 has-text-grey-lighter"
+          style="padding-bottom: 100px;"
+        >- {{author}}</p>
+      </div>
+      <div class="schedule">
+        <p class="is-size-1 has-text-grey-lighter">Aslab Jaga</p>
+        <p class="is-size-1 has-text-grey-lighter">{{day}}</p>
+        <div class="aslab-jaga">
+          <div v-if="workHours">
+            <div class="columns">
+              <div class="column">
+                <div class="box">
+                  <div class="content">
+                    <p class="is-size-1 has-text-grey-lighter">{{aslabNow[0]}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="box">
+                  <div class="content">
+                    <p class="is-size-1 has-text-grey-lighter">{{aslabNow[1]}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="box">
+                  <div class="content">
+                    <p class="is-size-1 has-text-grey-lighter">{{aslabNow[2]}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            v-else
+            class="is-size-1 has-text-grey-lighter"
+          >
+            {{aslabNow}}
+          </div>
         </div>
       </div>
     </div>
@@ -64,63 +94,63 @@ export default {
       jadwalAslab: {
         senin: {
           jam: {
-            6: ["KHM", "AFG", "VIN"],
-            7: ["KHM", "AFG", "VIN"],
-            8: ["KHM", "AFG", "VIN"],
-            9: ["KHM", "AFG", "VIN"],
-            10: ["KHM", "AFG", "VIN"],
-            11: ["KHM", "AFG", "VIN"],
-            12: ["VIN", "AFG", "RAH"],
-            13: ["VIN", "AFG", "RAH"],
-            14: ["VIN", "AFG", "RAH"],
-            15: ["KHM", "AFG", "RAH"],
-            16: ["KHM", "AFG", "RAH"],
-            17: ["KHM", "AFG", "RAH"]
+            6: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
+            7: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
+            8: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
+            9: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
+            10: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
+            11: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
+            12: ["VIN", "AFG, S.Si.Kom.", "RAH"],
+            13: ["VIN", "AFG, S.Si.Kom.", "RAH"],
+            14: ["VIN", "AFG, S.Si.Kom.", "RAH"],
+            15: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "RAH"],
+            16: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "RAH"],
+            17: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "RAH"]
           }
         },
         selasa: {
           jam: {
-            6: ["AFG", "RAH", "KHM"],
-            7: ["AFG", "RAH", "KHM"],
-            8: ["AFG", "RAH", "KHM"],
-            9: ["AFG", "RAH", "KHM"],
-            10: ["AFG", "RAH", "KHM"],
-            11: ["AFG", "RAH", "HRD"],
-            12: ["AFG", "RAH", "HRD"],
-            13: ["AFG", "VIN", "HRD"],
-            14: ["AFG", "VIN", "HRD"],
-            15: ["AFG", "VIN", "HRD"],
-            16: ["AFG", "VIN", "HRD"],
-            17: ["AFG", "VIN", "HRD"]
+            6: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
+            7: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
+            8: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
+            9: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
+            10: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
+            11: ["AFG, S.Si.Kom.", "RAH", "HRD"],
+            12: ["AFG, S.Si.Kom.", "RAH", "HRD"],
+            13: ["AFG, S.Si.Kom.", "VIN", "HRD"],
+            14: ["AFG, S.Si.Kom.", "VIN", "HRD"],
+            15: ["AFG, S.Si.Kom.", "VIN", "HRD"],
+            16: ["AFG, S.Si.Kom.", "VIN", "HRD"],
+            17: ["AFG, S.Si.Kom.", "VIN", "HRD"]
           }
         },
         rabu: {
           jam: {
-            6: ["RAH", "VIN", "KHM"],
-            7: ["RAH", "VIN", "KHM"],
-            8: ["RAH", "VIN", "KHM"],
-            9: ["RAH", "VIN", "KHM"],
-            10: ["RAH", "VIN", "KHM"],
-            11: ["RAH", "VIN", "KHM"],
-            12: ["AFG", "VIN", "KHM"],
-            13: ["AFG", "VIN", "KHM"],
-            14: ["AFG", "VIN", "KHM"],
-            15: ["AFG", "VIN", "KHM"],
-            16: ["AFG", "VIN", "KHM"],
-            17: ["AFG", "VIN", "KHM"]
+            6: ["RAH", "VIN", "KHM, S.Kom."],
+            7: ["RAH", "VIN", "KHM, S.Kom."],
+            8: ["RAH", "VIN", "KHM, S.Kom."],
+            9: ["RAH", "VIN", "KHM, S.Kom."],
+            10: ["RAH", "VIN", "KHM, S.Kom."],
+            11: ["RAH", "VIN", "KHM, S.Kom."],
+            12: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
+            13: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
+            14: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
+            15: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
+            16: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
+            17: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."]
           }
         },
         kamis: {
           jam: {
-            6: ["RAH", "AFG", "KHM"],
-            7: ["RAH", "AFG", "KHM"],
-            8: ["RAH", "AFG", "KHM"],
-            9: ["RAH", "AFG", "KHM"],
-            10: ["RAH", "AFG", "KHM"],
-            11: ["RAH", "AFG", "KHM"],
-            12: ["RAH", "AFG", "KHM"],
-            13: ["RAH", "VIN", "KHM"],
-            14: ["RAH", "VIN", "KHM"],
+            6: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
+            7: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
+            8: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
+            9: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
+            10: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
+            11: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
+            12: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
+            13: ["RAH", "VIN", "KHM, S.Kom."],
+            14: ["RAH", "VIN", "KHM, S.Kom."],
             15: ["RAH", "VIN", "HRD"],
             16: ["RAH", "VIN", "HRD"],
             17: ["RAH", "VIN", "HRD"]
@@ -128,15 +158,15 @@ export default {
         },
         jumat: {
           jam: {
-            7: ["RAH", "AFG", "VIN"],
-            8: ["RAH", "AFG", "VIN"],
-            9: ["RAH", "AFG", "VIN"],
-            10: ["RAH", "AFG", "VIN"],
-            13: ["RAH", "KHM", "VIN"],
-            14: ["RAH", "KHM", "VIN"],
-            15: ["RAH", "KHM", "VIN"],
-            16: ["RAH", "KHM", "VIN"],
-            17: ["RAH", "KHM", "VIN"]
+            7: ["RAH", "AFG, S.Si.Kom.", "VIN"],
+            8: ["RAH", "AFG, S.Si.Kom.", "VIN"],
+            9: ["RAH", "AFG, S.Si.Kom.", "VIN"],
+            10: ["RAH", "AFG, S.Si.Kom.", "VIN"],
+            13: ["RAH", "KHM, S.Kom.", "VIN"],
+            14: ["RAH", "KHM, S.Kom.", "VIN"],
+            15: ["RAH", "KHM, S.Kom.", "VIN"],
+            16: ["RAH", "KHM, S.Kom.", "VIN"],
+            17: ["RAH", "KHM, S.Kom.", "VIN"]
           }
         },
         sabtu: {
