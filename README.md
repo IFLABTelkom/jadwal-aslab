@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e4cdea15-757d-45d7-9755-d4e8b807b678/deploy-status)](https://app.netlify.com/sites/jadwal-aslab/deploys)
+
 # jadwal-aslab
 
 ## Project setup
