@@ -14,7 +14,7 @@
         <p class="is-size-1 has-text-grey-lighter">{{quotes}}</p>
         <p
           class="is-size-1 has-text-grey-lighter"
-          style="padding-bottom: 100px;"
+          style="padding-bottom: 150px;"
         >- {{author}}</p>
       </div>
       <div class="schedule">
@@ -194,10 +194,16 @@ export default {
     leftPadding: function(str) {
       const leftPadding = "00";
       return leftPadding.substring(0, leftPadding.length - str.length) + str;
+    },
+    getQuotes: function() {
+      const response = await axios.get("http://quotes.rest/qod");
+      this.quotes = response.data.contents.quotes[0]["quote"];
+      this.author = response.data.contents.quotes[0]["author"];
     }
   },
   mounted: function() {
     setInterval(this.updateClock, 1000);
+    setInterval(this.getQuotes, 3600000);
   },
   computed: {
     jagaLab: function() {
@@ -262,13 +268,13 @@ export default {
     }
   },
   async created() {
-    try {
-      const response = await axios.get("http://quotes.rest/qod");
-      this.quotes = response.data.contents.quotes[0]["quote"];
-      this.author = response.data.contents.quotes[0]["author"];
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const response = await axios.get("http://quotes.rest/qod");
+    //   this.quotes = response.data.contents.quotes[0]["quote"];
+    //   this.author = response.data.contents.quotes[0]["author"];
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 };
 </script>
