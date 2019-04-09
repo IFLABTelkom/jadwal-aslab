@@ -195,7 +195,7 @@ export default {
       const leftPadding = "00";
       return leftPadding.substring(0, leftPadding.length - str.length) + str;
     },
-    getQuotes: function() {
+    getQuotes: async function() {
       const response = await axios.get("http://quotes.rest/qod");
       this.quotes = response.data.contents.quotes[0]["quote"];
       this.author = response.data.contents.quotes[0]["author"];
