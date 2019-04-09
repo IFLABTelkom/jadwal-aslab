@@ -1,5 +1,8 @@
 <template>
-  <div class="hero-body">
+  <div
+    class="hero-body"
+    id="container1"
+  >
     <div class="container">
       <div class="clock">
         <p class="is-size-1 has-text-grey-lighter">{{hariTanggalTahun}}</p>
@@ -50,7 +53,15 @@
             v-else
             class="is-size-1 has-text-grey-lighter"
           >
-            {{aslabNow}}
+            <div class="columns">
+              <div class="column">
+                <div class="box">
+                  <div class="content">
+                    <p class="is-size-1 has-text-grey-lighter">{{aslabNow}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -74,7 +85,7 @@ export default {
       date: "",
       month: "",
       year: "",
-      days: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+      days: ["Minggu", "Senin", "Selasa", "Rabu", "selasa", "Jumat", "Sabtu"],
       months: [
         "Januari",
         "Februari",
@@ -140,7 +151,7 @@ export default {
             17: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."]
           }
         },
-        kamis: {
+        selasa: {
           jam: {
             6: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
             7: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
@@ -229,30 +240,54 @@ export default {
           return ["Minggu", "Takde", "Jadwal"];
           break;
         case 1:
-          return this.jadwalAslab.senin.jam[Number(this.hour)];
+          if (this.jadwalAslab.senin.jam[Number(this.hour)]) {
+            return this.jadwalAslab.senin.jam[Number(this.hour)];
+          } else {
+            this.workHours = false;
+            return "Saat ini bukan jam kerja";
+          }
           break;
         case 2:
-          return this.jadwalAslab.selasa.jam[Number(this.hour)];
+          if (this.jadwalAslab.selasa.jam[Number(this.hour)]) {
+            return this.jadwalAslab.selasa.jam[Number(this.hour)];
+          } else {
+            this.workHours = false;
+            return "Saat ini bukan jam kerja";
+          }
           break;
         case 3:
-          return this.jadwalAslab.rabu.jam[Number(this.hour)];
+          if (this.jadwalAslab.rabu.jam[Number(this.hour)]) {
+            return this.jadwalAslab.rabu.jam[Number(this.hour)];
+          } else {
+            this.workHours = false;
+            return "Saat ini bukan jam kerja";
+          }
           break;
         case 4:
-          return this.jadwalAslab.kamis.jam[Number(this.hour)];
+          if (this.jadwalAslab.kamis.jam[Number(this.hour)]) {
+            return this.jadwalAslab.kamis.jam[Number(this.hour)];
+          } else {
+            this.workHours = false;
+            return "Saat ini bukan jam kerja";
+          }
           break;
         case 5:
           if (this.jadwalAslab.jumat.jam[Number(this.hour)]) {
             return this.jadwalAslab.jumat.jam[Number(this.hour)];
           } else {
             this.workHours = false;
-            return `Tidak ada jadwal jaga pada pukul ${
-              this.hour
-            } - ${this.hour.replace(/.$/, Number(this.hour) + 1)}`;
+            return "Saat ini bukan jam kerja";
           }
           return;
           break;
         case 6:
-          return this.jadwalAslab.sabtu.jam[Number(this.hour)];
+          if (this.jadwalAslab.sabtu.jam[Number(this.hour)]) {
+            return this.jadwalAslab.sabtu.jam[Number(this.hour)];
+          } else {
+            this.workHours = false;
+            return "Saat ini bukan jam kerja";
+          }
+          return;
           break;
         default:
           return "the day counter broke";
@@ -274,4 +309,7 @@ export default {
 </script>
 
 <style scoped>
+.hero-body {
+  overflow: hidden;
+}
 </style>
