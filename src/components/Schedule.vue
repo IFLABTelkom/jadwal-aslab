@@ -87,7 +87,7 @@ export default {
       date: "",
       month: "",
       year: "",
-      days: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+      days: Days,
       months: [
         "Januari",
         "Februari",
