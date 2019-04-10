@@ -72,6 +72,8 @@
 <script>
 import { setInterval } from "timers";
 import axios from "axios";
+import JadwalAslab from "../JadwalAslab.js";
+import Days from "../Days.js";
 export default {
   name: "Schedule",
   data() {
@@ -85,7 +87,7 @@ export default {
       date: "",
       month: "",
       year: "",
-      days: ["Minggu", "Senin", "Selasa", "Rabu", "selasa", "Jumat", "Sabtu"],
+      days: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
       months: [
         "Januari",
         "Februari",
@@ -102,92 +104,7 @@ export default {
       ],
       quotes: "",
       author: "",
-      jadwalAslab: {
-        senin: {
-          jam: {
-            6: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
-            7: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
-            8: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
-            9: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
-            10: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
-            11: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "VIN"],
-            12: ["VIN", "AFG, S.Si.Kom.", "RAH"],
-            13: ["VIN", "AFG, S.Si.Kom.", "RAH"],
-            14: ["VIN", "AFG, S.Si.Kom.", "RAH"],
-            15: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "RAH"],
-            16: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "RAH"],
-            17: ["KHM, S.Kom.", "AFG, S.Si.Kom.", "RAH"]
-          }
-        },
-        selasa: {
-          jam: {
-            6: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
-            7: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
-            8: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
-            9: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
-            10: ["AFG, S.Si.Kom.", "RAH", "KHM, S.Kom."],
-            11: ["AFG, S.Si.Kom.", "RAH", "HRD"],
-            12: ["AFG, S.Si.Kom.", "RAH", "HRD"],
-            13: ["AFG, S.Si.Kom.", "VIN", "HRD"],
-            14: ["AFG, S.Si.Kom.", "VIN", "HRD"],
-            15: ["AFG, S.Si.Kom.", "VIN", "HRD"],
-            16: ["AFG, S.Si.Kom.", "VIN", "HRD"],
-            17: ["AFG, S.Si.Kom.", "VIN", "HRD"]
-          }
-        },
-        rabu: {
-          jam: {
-            6: ["RAH", "VIN", "KHM, S.Kom."],
-            7: ["RAH", "VIN", "KHM, S.Kom."],
-            8: ["RAH", "VIN", "KHM, S.Kom."],
-            9: ["RAH", "VIN", "KHM, S.Kom."],
-            10: ["RAH", "VIN", "KHM, S.Kom."],
-            11: ["RAH", "VIN", "KHM, S.Kom."],
-            12: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
-            13: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
-            14: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
-            15: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
-            16: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."],
-            17: ["AFG, S.Si.Kom.", "VIN", "KHM, S.Kom."]
-          }
-        },
-        selasa: {
-          jam: {
-            6: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
-            7: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
-            8: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
-            9: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
-            10: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
-            11: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
-            12: ["RAH", "AFG, S.Si.Kom.", "KHM, S.Kom."],
-            13: ["RAH", "VIN", "KHM, S.Kom."],
-            14: ["RAH", "VIN", "KHM, S.Kom."],
-            15: ["RAH", "VIN", "HRD"],
-            16: ["RAH", "VIN", "HRD"],
-            17: ["RAH", "VIN", "HRD"]
-          }
-        },
-        jumat: {
-          jam: {
-            7: ["RAH", "AFG, S.Si.Kom.", "VIN"],
-            8: ["RAH", "AFG, S.Si.Kom.", "VIN"],
-            9: ["RAH", "AFG, S.Si.Kom.", "VIN"],
-            10: ["RAH", "AFG, S.Si.Kom.", "VIN"],
-            13: ["RAH", "KHM, S.Kom.", "VIN"],
-            14: ["RAH", "KHM, S.Kom.", "VIN"],
-            15: ["RAH", "KHM, S.Kom.", "VIN"],
-            16: ["RAH", "KHM, S.Kom.", "VIN"],
-            17: ["RAH", "KHM, S.Kom.", "VIN"]
-          }
-        },
-        sabtu: {
-          jam: {
-            12: ["MFS", "GSU", "MFA"],
-            13: ["MFS", "GSU", "MFA"],
-            14: ["MFS", "GSU", "MFA"]
-          }
-        }
-      }
+      jadwalAslab: JadwalAslab
     };
   },
   methods: {
@@ -241,6 +158,7 @@ export default {
           break;
         case 1:
           if (this.jadwalAslab.senin.jam[Number(this.hour)]) {
+            this.workHours = true;
             return this.jadwalAslab.senin.jam[Number(this.hour)];
           } else {
             this.workHours = false;
@@ -249,6 +167,7 @@ export default {
           break;
         case 2:
           if (this.jadwalAslab.selasa.jam[Number(this.hour)]) {
+            this.workHours = true;
             return this.jadwalAslab.selasa.jam[Number(this.hour)];
           } else {
             this.workHours = false;
@@ -257,6 +176,7 @@ export default {
           break;
         case 3:
           if (this.jadwalAslab.rabu.jam[Number(this.hour)]) {
+            this.workHours = true;
             return this.jadwalAslab.rabu.jam[Number(this.hour)];
           } else {
             this.workHours = false;
@@ -265,6 +185,7 @@ export default {
           break;
         case 4:
           if (this.jadwalAslab.kamis.jam[Number(this.hour)]) {
+            this.workHours = true;
             return this.jadwalAslab.kamis.jam[Number(this.hour)];
           } else {
             this.workHours = false;
@@ -273,6 +194,7 @@ export default {
           break;
         case 5:
           if (this.jadwalAslab.jumat.jam[Number(this.hour)]) {
+            this.workHours = true;
             return this.jadwalAslab.jumat.jam[Number(this.hour)];
           } else {
             this.workHours = false;
@@ -282,6 +204,7 @@ export default {
           break;
         case 6:
           if (this.jadwalAslab.sabtu.jam[Number(this.hour)]) {
+            this.workHours = true;
             return this.jadwalAslab.sabtu.jam[Number(this.hour)];
           } else {
             this.workHours = false;
