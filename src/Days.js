@@ -1,3 +1,3 @@
-const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'selasa', 'Jumat', 'Sabtu'];
+const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 
 export default days;

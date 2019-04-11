@@ -47,7 +47,7 @@ const jadwalAslab = {
       17: ['AFG, S.Si.Kom.', 'VIN', 'KHM, S.Kom.']
     }
   },
-  selasa: {
+  kamis: {
     jam: {
       6: ['RAH', 'AFG, S.Si.Kom.', 'KHM, S.Kom.'],
       7: ['RAH', 'AFG, S.Si.Kom.', 'KHM, S.Kom.'],

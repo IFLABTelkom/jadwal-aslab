@@ -8,16 +8,16 @@
         <p class="is-size-1 has-text-grey-lighter">{{hariTanggalTahun}}</p>
         <p
           class="is-size-1 has-text-grey-lighter"
-          style="padding-bottom: 150px;"
+          style="padding-bottom: 50px;"
         >{{ hour }}:{{ minute }}:{{ second }}</p>
         <p class="is-size-1 has-text-grey-lighter">{{ jagaLab}}</p>
       </div>
       <div class="quotes">
-        <p class="is-size-1 has-text-grey-lighter">Quotes of the Day</p>
+        <p class="is-size-1 has-text-grey-lighter">Quote of the Day</p>
         <p class="is-size-1 has-text-grey-lighter">{{quotes}}</p>
         <p
           class="is-size-1 has-text-grey-lighter"
-          style="padding-bottom: 150px;"
+          style="padding-bottom: 50px;"
         >- {{author}}</p>
       </div>
       <div class="schedule">
@@ -74,6 +74,7 @@ import { setInterval } from "timers";
 import axios from "axios";
 import JadwalAslab from "../JadwalAslab.js";
 import Days from "../Days.js";
+import { log } from "util";
 export default {
   name: "Schedule",
   data() {
