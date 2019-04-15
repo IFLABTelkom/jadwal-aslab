@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="hero-body"
-    id="container1"
-  >
+  <div class="hero-body">
     <div class="container">
       <div class="clock">
         <p class="is-size-1 has-text-grey-lighter">{{hariTanggalTahun}}</p>
@@ -47,6 +44,29 @@
                   </div>
                 </div>
               </div>
+
+            </div>
+            <div class="columns">
+              <div class="column">
+                <div class="box">
+                  <div class="field">
+                    <div class="select is-large is-danger">
+                      <select style="background-color:hsla(0, 0%, 30%, 1);">
+                        <option style="background-color:hsl(0, 0%, 86%); color:white;">Aslab Pengganti</option>
+                        <option style="background-color:hsl(0, 0%, 86%); color:white;">With options</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+              </div>
+              <div class="column">
+                <select style="background:hsla(0, 0%, 30%, 1);">
+                  <option style="background-color:hsla(0, 0%, 30%, 1);">Select dropdown</option>
+                  <option>With options</option>
+                </select>
+              </div>
             </div>
           </div>
           <div
@@ -65,6 +85,43 @@
           </div>
         </div>
       </div>
+      <div class="history">
+        <p
+          class="is-size-1 has-text-grey-lighter"
+          style="padding-top:200px; padding-bottom:25px;"
+        >History Aslab Jaga {{day}}</p>
+        <table class="table is-narrow">
+          <thead>
+            <tr>
+              <th class="has-text-grey-lighter">Aslab 1</th>
+              <th class="has-text-grey-lighter">Aslab 2</th>
+              <th class="has-text-grey-lighter">Aslab 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="has-text-grey-lighter">KHM</td>
+              <td class="has-text-grey-lighter">AFG</td>
+              <td class="has-text-grey-lighter">RAH</td>
+            </tr>
+            <tr>
+              <td>KHM</td>
+              <td>AFG</td>
+              <td>RAH</td>
+            </tr>
+            <tr>
+              <td>KHM</td>
+              <td>AFG</td>
+              <td>RAH</td>
+            </tr>
+            <tr>
+              <td>KHM</td>
+              <td>AFG</td>
+              <td>RAH</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +136,7 @@ export default {
   name: "Schedule",
   data() {
     return {
+      historyAslab: [],
       workHours: true,
       hour: "",
       minute: "",
@@ -109,6 +167,9 @@ export default {
     };
   },
   methods: {
+    updateHistory: function() {
+      this.historyAslab.push(this.aslabNow);
+    },
     updateClock: function() {
       let now = new Date();
       this.hour = this.leftPadding("" + now.getHours());
@@ -233,7 +294,11 @@ export default {
 </script>
 
 <style scoped>
-.hero-body {
-  overflow: hidden;
+.table {
+  margin-left: auto;
+  margin-right: auto;
+}
+.option {
+  background: hsla(0, 0%, 30%, 1);
 }
 </style>
