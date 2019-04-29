@@ -18,8 +18,7 @@
         >- {{author}}</p>
       </div>
       <div class="schedule">
-        <p class="is-size-1 has-text-grey-lighter">Aslab Jaga</p>
-        <p class="is-size-1 has-text-grey-lighter">{{day}}</p>
+        <p class="is-size-1 has-text-grey-lighter">Jadwal Jaga</p>
         <div class="aslab-jaga">
           <div v-if="workHours">
             <div class="columns">
@@ -44,28 +43,68 @@
                   </div>
                 </div>
               </div>
-
             </div>
+            <p class="is-size-1 has-text-grey-lighter">Aslab Pengganti</p>
             <div class="columns">
               <div class="column">
                 <div class="box">
                   <div class="field">
                     <div class="select is-large is-danger">
-                      <select style="background-color:hsla(0, 0%, 30%, 1);">
-                        <option style="background-color:hsl(0, 0%, 86%); color:white;">Aslab Pengganti</option>
-                        <option style="background-color:hsl(0, 0%, 86%); color:white;">With options</option>
+                      <select
+                        v-model="aslabPengganti1"
+                        @change="updateAslab1($event)"
+                      >
+                        <option
+                          disabled
+                          value=""
+                        >Aslab Pengganti</option>
+                        <option v-for="aslab in daftarAslab">
+                          {{aslab}}
+                        </option>
                       </select>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="column">
+                <div class="box">
+                  <div class="field">
+                    <div class="select is-large is-danger">
+                      <select
+                        v-model="aslabPengganti2"
+                        @change="updateAslab2($event)"
+                      >
+                        <option
+                          disabled
+                          value=""
+                        >Aslab Pengganti</option>
+                        <option v-for="aslab in daftarAslab">
+                          {{aslab}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="column">
-                <select style="background:hsla(0, 0%, 30%, 1);">
-                  <option style="background-color:hsla(0, 0%, 30%, 1);">Select dropdown</option>
-                  <option>With options</option>
-                </select>
+                <div class="box">
+                  <div class="field">
+                    <div class="select is-large is-danger">
+                      <select
+                        v-model="aslabPengganti3"
+                        @change="updateAslab3($event)"
+                      >
+                        <option
+                          disabled
+                          value=""
+                        >Aslab Pengganti</option>
+                        <option v-for="aslab in daftarAslab">
+                          {{aslab}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -104,21 +143,6 @@
               <td class="has-text-grey-lighter">AFG</td>
               <td class="has-text-grey-lighter">RAH</td>
             </tr>
-            <tr>
-              <td>KHM</td>
-              <td>AFG</td>
-              <td>RAH</td>
-            </tr>
-            <tr>
-              <td>KHM</td>
-              <td>AFG</td>
-              <td>RAH</td>
-            </tr>
-            <tr>
-              <td>KHM</td>
-              <td>AFG</td>
-              <td>RAH</td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -136,6 +160,21 @@ export default {
   name: "Schedule",
   data() {
     return {
+      aslabPengganti1: null,
+      aslabPengganti2: null,
+      aslabPengganti3: null,
+      daftarAslab: [
+        "AFG",
+        "KHM",
+        "VIN",
+        "RAH",
+        "MFS",
+        "MFA",
+        "DHM",
+        "RMT",
+        "GSU",
+        "CRM"
+      ],
       historyAslab: [],
       workHours: true,
       hour: "",
@@ -167,6 +206,15 @@ export default {
     };
   },
   methods: {
+    updateAslab1: function(event) {
+      this.aslabNow[0] = event.target.value;
+    },
+    updateAslab2: function(event) {
+      this.aslabNow[1] = event.target.value;
+    },
+    updateAslab3: function(event) {
+      this.aslabNow[2] = event.target.value;
+    },
     updateHistory: function() {
       this.historyAslab.push(this.aslabNow);
     },
@@ -221,6 +269,7 @@ export default {
         case 1:
           if (this.jadwalAslab.senin.jam[Number(this.hour)]) {
             this.workHours = true;
+
             return this.jadwalAslab.senin.jam[Number(this.hour)];
           } else {
             this.workHours = false;
