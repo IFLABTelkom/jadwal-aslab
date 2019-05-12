@@ -124,6 +124,8 @@
           </div>
         </div>
       </div>
+      <h1>aslabnow{{aslabNow}}</h1>
+      <h1>{{historyAslab}}</h1>
       <div class="history">
         <p
           class="is-size-1 has-text-grey-lighter"
@@ -138,10 +140,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="has-text-grey-lighter">KHM</td>
-              <td class="has-text-grey-lighter">AFG</td>
-              <td class="has-text-grey-lighter">RAH</td>
+            <tr v-for="aslab in historyAslab">
+              <td class="has-text-grey-lighter">{{aslab[0]}}</td>
+              <td class="has-text-grey-lighter">{{aslab[1]}}</td>
+              <td class="has-text-grey-lighter">{{aslab[2]}}</td>
             </tr>
           </tbody>
         </table>
@@ -156,6 +158,7 @@ import axios from "axios";
 import JadwalAslab from "../JadwalAslab.js";
 import Days from "../Days.js";
 import { log } from "util";
+import { async } from "q";
 export default {
   name: "Schedule",
   data() {
@@ -175,7 +178,7 @@ export default {
         "GSU",
         "CRM"
       ],
-      historyAslab: [],
+      historyAslab: [["A", "B", "C"]],
       workHours: true,
       hour: "",
       minute: "",
@@ -215,10 +218,12 @@ export default {
     updateAslab3: function(event) {
       this.aslabNow[2] = event.target.value;
     },
-    updateHistory: function() {
-      this.historyAslab.push(this.aslabNow);
+    updateHistory: function(aslab) {
+      console.log("update history");
+
+      this.historyAslab.push(aslab);
     },
-    updateClock: function() {
+    updateStates: async function() {
       let now = new Date();
       this.hour = this.leftPadding("" + now.getHours());
       this.minute = this.leftPadding("" + now.getMinutes());
@@ -228,6 +233,23 @@ export default {
       this.date = now.getDate();
       this.month = this.months[now.getMonth()];
       this.year = now.getFullYear();
+      if (now.getHours() === 0) {
+        // Update quote when the it's midnight
+        try {
+          const response = await axios.get("http://quotes.rest/qod");
+          this.quotes = response.data.contents.quotes[0]["quote"];
+          this.author = response.data.contents.quotes[0]["author"];
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (now.getMinutes() === 59) {
+        // Push history aslab dan kosongkan aslab pengganti
+        this.updateHistory(this.aslabNow);
+      } else if (now.getSeconds() % 5 == 0) {
+        console.log("updateStatesPush");
+
+        this.updateHistory(this.aslabNow);
+      }
     },
     leftPadding: function(str) {
       const leftPadding = "00";
@@ -235,7 +257,7 @@ export default {
     }
   },
   mounted: function() {
-    setInterval(this.updateClock, 1000);
+    setInterval(this.updateStates, 1000);
   },
   computed: {
     jagaLab: function() {
