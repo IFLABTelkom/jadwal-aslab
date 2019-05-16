@@ -54,10 +54,6 @@
                         v-model="aslabPengganti1"
                         @change="updateAslab1($event)"
                       >
-                        <option
-                          disabled
-                          value=""
-                        >Aslab Pengganti</option>
                         <option v-for="aslab in daftarAslab">
                           {{aslab}}
                         </option>
@@ -74,10 +70,6 @@
                         v-model="aslabPengganti2"
                         @change="updateAslab2($event)"
                       >
-                        <option
-                          disabled
-                          value=""
-                        >Aslab Pengganti</option>
                         <option v-for="aslab in daftarAslab">
                           {{aslab}}
                         </option>
@@ -94,10 +86,6 @@
                         v-model="aslabPengganti3"
                         @change="updateAslab3($event)"
                       >
-                        <option
-                          disabled
-                          value=""
-                        >Aslab Pengganti</option>
                         <option v-for="aslab in daftarAslab">
                           {{aslab}}
                         </option>
@@ -124,8 +112,6 @@
           </div>
         </div>
       </div>
-      <h1>aslabnow{{aslabNow}}</h1>
-      <h1>{{historyAslab}}</h1>
       <div class="history">
         <p
           class="is-size-1 has-text-grey-lighter"
@@ -166,6 +152,7 @@ export default {
       aslabPengganti1: null,
       aslabPengganti2: null,
       aslabPengganti3: null,
+      // aslabJaga: this.aslabNow
       daftarAslab: [
         "AFG",
         "KHM",
@@ -178,7 +165,7 @@ export default {
         "GSU",
         "CRM"
       ],
-      historyAslab: [["A", "B", "C"]],
+      historyAslab: [],
       workHours: true,
       hour: "",
       minute: "",
@@ -210,18 +197,13 @@ export default {
   },
   methods: {
     updateAslab1: function(event) {
-      this.aslabNow[0] = event.target.value;
+      this.aslabNow[0] = this.aslabPengganti1;
     },
     updateAslab2: function(event) {
-      this.aslabNow[1] = event.target.value;
+      this.aslabNow[1] = this.aslabPengganti2;
     },
     updateAslab3: function(event) {
-      this.aslabNow[2] = event.target.value;
-    },
-    updateHistory: function(aslab) {
-      console.log("update history");
-
-      this.historyAslab.push(aslab);
+      this.aslabNow[2] = this.aslabPengganti3;
     },
     updateStates: async function() {
       let now = new Date();
@@ -244,11 +226,13 @@ export default {
         }
       } else if (now.getMinutes() === 59) {
         // Push history aslab dan kosongkan aslab pengganti
-        this.updateHistory(this.aslabNow);
-      } else if (now.getSeconds() % 5 == 0) {
-        console.log("updateStatesPush");
-
-        this.updateHistory(this.aslabNow);
+        // this.historyAslab.push([...this.aslabNow]);
+      } else if (now.getSeconds() % 5 === 0) {
+        this.historyAslab.push([...this.aslabNow]);
+        this.aslabPengganti1 = null;
+        this.aslabPengganti2 = null;
+        this.aslabPengganti3 = null;
+        // this.aslabNow = aslabNow;
       }
     },
     leftPadding: function(str) {
