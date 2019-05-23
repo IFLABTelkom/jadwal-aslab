@@ -224,15 +224,18 @@ export default {
         } catch (error) {
           console.log(error);
         }
-      } else if (now.getMinutes() === 59) {
+      } else if (now.getMinutes() === 59 && this.workHours === true) {
         // Push history aslab dan kosongkan aslab pengganti
-        // this.historyAslab.push([...this.aslabNow]);
-      } else if (now.getSeconds() % 5 === 0) {
         this.historyAslab.push([...this.aslabNow]);
         this.aslabPengganti1 = null;
         this.aslabPengganti2 = null;
         this.aslabPengganti3 = null;
-        // this.aslabNow = aslabNow;
+      } else if (now.getSeconds() % 5 === 0 && this.workHours === true) {
+        // this part is for debugging purposes
+        // this.historyAslab.push([...this.aslabNow]);
+        // this.aslabPengganti1 = null;
+        // this.aslabPengganti2 = null;
+        // this.aslabPengganti3 = null;
       }
     },
     leftPadding: function(str) {
