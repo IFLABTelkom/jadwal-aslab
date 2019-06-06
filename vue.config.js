@@ -2,6 +2,6 @@
 module.exports = {
   // options...
   devServer: {
-    proxy: 'http://quotes.rest/'
+    proxy: 'https://quotes.rest/'
   }
 };

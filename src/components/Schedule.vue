@@ -341,7 +341,7 @@ export default {
   },
   async created() {
     try {
-      const response = await axios.get("http://quotes.rest/qod");
+      const response = await axios.get("https://quotes.rest/qod");
       this.quotes = response.data.contents.quotes[0]["quote"];
       this.author = response.data.contents.quotes[0]["author"];
     } catch (error) {
