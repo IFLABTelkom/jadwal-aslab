@@ -142,6 +142,7 @@
 import { setInterval } from "timers";
 import axios from "axios";
 import JadwalAslab from "../JadwalAslab.js";
+import DaftarAslab from "../DaftarAslab.js";
 import Days from "../Days.js";
 import { log } from "util";
 import { async } from "q";
@@ -153,18 +154,7 @@ export default {
       aslabPengganti2: null,
       aslabPengganti3: null,
       // aslabJaga: this.aslabNow
-      daftarAslab: [
-        "AFG",
-        "KHM",
-        "VIN",
-        "RAH",
-        "MFS",
-        "MFA",
-        "DHM",
-        "RMT",
-        "GSU",
-        "CRM"
-      ],
+      daftarAslab: DaftarAslab,
       historyAslab: [],
       workHours: true,
       hour: "",
@@ -227,16 +217,17 @@ export default {
       } else if (now.getMinutes() === 59 && this.workHours === true) {
         // Push history aslab dan kosongkan aslab pengganti
         this.historyAslab.push([...this.aslabNow]);
-        this.aslabPengganti1 = null;
-        this.aslabPengganti2 = null;
-        this.aslabPengganti3 = null;
-      } else if (now.getSeconds() % 5 === 0 && this.workHours === true) {
-        // this part is for debugging purposes
-        // this.historyAslab.push([...this.aslabNow]);
         // this.aslabPengganti1 = null;
         // this.aslabPengganti2 = null;
         // this.aslabPengganti3 = null;
+      } else if (now.getSeconds() % 5 === 0 && this.workHours === true) {
+        // this part is for debugging purposes
+        this.historyAslab.push([...this.aslabNow]);
+        this.aslabPengganti1 = null;
+        this.aslabPengganti2 = null;
+        this.aslabPengganti3 = null;
       }
+      // TODO: Add feature to clear the history before the day begins
     },
     leftPadding: function(str) {
       const leftPadding = "00";

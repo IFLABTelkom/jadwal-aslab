@@ -12,7 +12,11 @@ const jadwalAslab = {
       14: ['VIN', 'AFG', 'RAH'],
       15: ['KHM', 'AFG', 'RAH'],
       16: ['KHM', 'AFG', 'RAH'],
-      17: ['KHM', 'AFG', 'RAH']
+      17: ['KHM', 'AFG', 'RAH'],
+      18: ['KHM', 'AFG', 'RAH'],
+      19: ['KHM', 'AFG', 'RAH'],
+      20: ['KHM', 'AFG', 'RAH'],
+      21: ['KHM', 'AFG', 'RAH']
     }
   },
   selasa: {
