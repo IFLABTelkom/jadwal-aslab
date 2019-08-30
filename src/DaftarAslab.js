@@ -1,13 +1,9 @@
 const daftarAslab = [
-  'AFG',
-  'KHM',
-  'VIN',
-  'RAH',
-  'MFS',
-  'MFA',
-  'DHM',
+  'FAM',
+  'FER',
+  'HEV',
   'RMT',
-  'GSU',
+  'GRS',
   'CRM'
 ];
 
